@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: db_postgres
+    image: postgres:15
+    environment:
+      POSTGRES_USER: db_travel
+      POSTGRES_PASSWORD: '123456'
+      POSTGRES_DB: db_travel
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+  golang:
+    image: golang:1.21
+    container_name: golang
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ~/.ssh:/root/.ssh 
+    ports:
+      - "8080:8080"
+    command: "tail -f /dev/null"  # Mantém o contêiner Golang em execução
+    entrypoint:
+      - /bin/bash
+      - -c
+      - |
+        # Ajustando permissões da chave privada para evitar o erro de permissões
+        chmod 600 /root/.ssh/id_ed25519 && tail -f /dev/null  # Corrige as permissões da chave SSH
+
+
+volumes:
+  postgres_data:
+    driver: local

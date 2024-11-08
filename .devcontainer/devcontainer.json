@@ -1,0 +1,12 @@
+{
+  "name": "Golang + PostgreSQL",
+  "context": "..",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "golang",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "extensions": [
+    "golang.go",
+    "ms-azuretools.vscode-docker"
+  ]
+}
