@@ -22,7 +22,7 @@ POST http://localhost:8080/travel
   "Status": "cancelado",
   "CreatedAt": "2024-11-01T12:00:00Z"
 }
-
+```
 2. Listar Todos os Pedidos de Viagem
 Retorna todos os pedidos de viagem cadastrados, com a possibilidade de filtrar por status.
 
