@@ -12,6 +12,7 @@ services:
       - 5432:5432
     volumes:
       - ./db-data:/var/lib/postgresql/data
+
   golang:
     image: golang:1.21
     container_name: golang
@@ -21,15 +22,10 @@ services:
       - ~/.ssh:/root/.ssh 
     ports:
       - "8080:8080"
-    command: "tail -f /dev/null"  # Mantém o contêiner Golang em execução
+    command: "go run main.go"
     entrypoint:
       - /bin/bash
       - -c
       - |
         # Ajustando permissões da chave privada para evitar o erro de permissões
-        chmod 600 /root/.ssh/id_ed25519 && tail -f /dev/null  # Corrige as permissões da chave SSH
-
-
-volumes:
-  postgres_data:
-    driver: local
+        chmod 600 /root/.ssh/id_ed25519 && go run main.go  # Rodar o projeto Go
