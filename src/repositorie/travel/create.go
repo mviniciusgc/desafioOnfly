@@ -1,8 +1,6 @@
 package repositorie
 
 import (
-	"fmt"
-
 	"github.com/mviniciusgc/onfly/src/entity"
 )
 
@@ -11,13 +9,11 @@ func (c *ClientRepository) Create(travel entity.TravelEntity) (id *int64, err er
 	nameTable := "travel"
 	fields := []string{"requester_name", "destination", "departure_date", "return_date", "status", "created_at"}
 
-	//Iniciando a conexão com o banco
-	conn, err := c.db.InitDB()
+	conn, err := c.getConnection()
 	if err != nil {
 		return nil, err
 	}
 
-	//iniciano a transação
 	tx, err := c.db.Begin(conn)
 	if err != nil {
 		return nil, err
@@ -25,14 +21,11 @@ func (c *ClientRepository) Create(travel entity.TravelEntity) (id *int64, err er
 
 	defer tx.Rollback()
 
-	// Cria uma instrução dentro de uma transação para ser executada
 	stmt, err := c.db.Prepare(tx, nameTable, fields)
 	if err != nil {
-		fmt.Printf("%+v\n", err)
-		fmt.Println("asdasd")
 		return nil, err
 	}
-	fmt.Printf("%+v\n", travel)
+
 	_, err = c.db.Exec(stmt, []interface{}{
 		travel.RequesterName,
 		travel.Destination,
@@ -42,13 +35,11 @@ func (c *ClientRepository) Create(travel entity.TravelEntity) (id *int64, err er
 		travel.CreatedAt,
 	})
 
-	// Fechando a instrução
 	err = c.db.Close(stmt)
 	if err != nil {
 		return nil, err
 	}
 
-	// confirmando a transação
 	err = c.db.Commit(tx)
 	if err != nil {
 		return nil, err

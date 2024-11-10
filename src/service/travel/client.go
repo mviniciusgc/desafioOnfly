@@ -1,6 +1,6 @@
-package service
+package travel
 
-import repositorie "github.com/mviniciusgc/onfly/src/repositorie"
+import repositorie "github.com/mviniciusgc/onfly/src/repositorie/travel"
 
 type TravelService struct {
 	clientrepository repositorie.IRepository

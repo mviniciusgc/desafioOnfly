@@ -20,7 +20,6 @@ func CreateTableTravel(conn *sql.DB) error {
 		return err
 	}
 
-	// Cria a tabela travel, se não existir
 	createTable := `
 	CREATE TABLE IF NOT EXISTS travel (
 		id SERIAL PRIMARY KEY,

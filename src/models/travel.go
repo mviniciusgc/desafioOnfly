@@ -3,6 +3,7 @@ package models
 import "time"
 
 type TravelModel struct {
+	ID            *int64    `json:"id,omitempty"`
 	RequesterName string    `json:"requesterName"`
 	Destination   string    `json:"destination"`
 	DepartureDate time.Time `json:"departureDate"`
