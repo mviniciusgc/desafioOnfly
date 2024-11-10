@@ -40,7 +40,6 @@ func (c *ClientDB) InitDB() (*sql.DB, error) {
 	return conn, err
 }
 
-// responsavel por criar as tabelas
 func (c *ClientDB) InitializeTables() error {
 	conn, err := c.InitDB()
 	if err != nil {
@@ -48,6 +47,11 @@ func (c *ClientDB) InitializeTables() error {
 	}
 
 	err = tables.CreateTableTravel(conn)
+	if err != nil {
+		return err
+	}
+
+	err = tables.CreateTableLogs(conn)
 	if err != nil {
 		return err
 	}
