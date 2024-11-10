@@ -53,7 +53,7 @@ travel: Armazena os pedidos de viagem.
 Como Rodar o Projeto
 Clone o repositório:
 git clone https://github.com/usuario/projeto-viagem.git
-cd projeto-viagem
+cd desafioOnfly
 
 Inicie os containers com Docker Compose: O Docker Compose é utilizado para subir o PostgreSQL e a imagem do Golang.
 docker-compose up 
