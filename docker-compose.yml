@@ -23,9 +23,15 @@ services:
     ports:
       - "8080:8080"
     command: "go run main.go"
+    depends_on:
+      - db
     entrypoint:
       - /bin/bash
       - -c
       - |
-        # Ajustando permissões da chave privada para evitar o erro de permissões
-        chmod 600 /root/.ssh/id_ed25519 && go run main.go  # Rodar o projeto Go
+        # Baixar o script wait-for-it
+        curl -sSL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -o /workspace/wait-for-it.sh
+        chmod +x /workspace/wait-for-it.sh
+        
+        # Esperar o banco de dados estar disponível na porta 5432 (máximo de 10 tentativas)
+        /workspace/wait-for-it.sh db:5432 --timeout=300 -- go run main.go
