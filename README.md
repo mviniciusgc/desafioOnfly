@@ -57,7 +57,8 @@ git clone https://github.com/usuario/projeto-viagem.git
 cd desafioOnfly
 
 Inicie os containers com Docker Compose: O Docker Compose é utilizado para subir o PostgreSQL e a imagem do Golang.
-docker-compose up 
+docker-compose up
+Isso pode levar alguns minutos.
 
 O serviço estará disponível em http://localhost:8080.
 
