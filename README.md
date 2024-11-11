@@ -36,7 +36,7 @@ Rota:
 GET http://localhost:8080/travel/{id}
 
 4. Atualizar o Status de um Pedido de Viagem
-Permite atualizar o status de um pedido de viagem para "aprovado" ou "cancelado".
+Permite atualizar o status de um pedido de viagem para o status (solicitado, aprovado, cancelado).
 
 Rota:
 PATCH http://localhost:8080/travel/updateStatus/{id}
