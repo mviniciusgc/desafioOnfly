@@ -41,10 +41,11 @@ Permite atualizar o status de um pedido de viagem para "aprovado" ou "cancelado"
 Rota:
 PATCH http://localhost:8080/travel/updateStatus/{id}
 Exemplo de corpo da requisição:
+```json
 {
   "Status": "aprovado"
 }
-
+```
 Estrutura do Banco de Dados
 O microsserviço utiliza duas tabelas no banco de dados PostgreSQL:
 
